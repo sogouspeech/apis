@@ -7,7 +7,7 @@ Sogou Speech APIs and help you to utilize them more efficiently. You can also
 use these definitions with open source tools to generate client
 libraries, documentation, and other artifacts.
 
-For more details on Sogou Speech APIs and developer tools, see the [SogouSpeechDocs](https://docs.speech.sogou.com) site.
+For more details on Sogou Speech APIs and developer tools, see the [SogouZhiYinDocs](https://docs.zhiyin.sogou.com) site.
 
 ## Overview
 
