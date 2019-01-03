@@ -130,8 +130,7 @@ message StreamingRecognitionConfig {
   // the recognizer will NOT detect any single spoken utterance
   // until the client closes the input stream (gRPC API) or
   // until the maximum time limit has been reached (approximately 30 seconds).
-  // It will return only one `StreamingRecognitionResult`s with the `is_final` set to `true`
-  // with an `END_OF_SINGLE_UTTERANCE` event and cease recognition.
+  // It will return only one `StreamingRecognitionResult`s with the `is_final` set to `true`.
   bool merge_utterance = 5;
 
 }
