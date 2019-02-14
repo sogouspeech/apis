@@ -171,7 +171,7 @@ message RecognitionConfig {
   AudioEncoding encoding = 1;
 
   // *Required* Sample rate in Hertz of the audio data sent in all
-  // `RecognitionAudio` messages. Valid values are only: 16000.
+  // `RecognitionAudio` messages. Valid values are only: 8000(model = phonecall), 16000.
   int32 sample_rate_hertz = 2;
 
   // *Required* The language code of the supplied audio.
@@ -200,6 +200,9 @@ message RecognitionConfig {
   // `false`.
   bool enable_word_time_offsets = 8;
 
+  // *Optional* Metadata regarding this request.
+  RecognitionMetadata metadata = 9;
+
   // *Optional* If 'true', stop adds punctuation to recognition result hypotheses.
   // The default 'false' value DOES add punctuation to result hypotheses.
   bool disable_automatic_punctuation = 11;
@@ -212,6 +215,34 @@ message RecognitionConfig {
   // *Optional* Configuration for some specific scenarios
   repeated google.protobuf.Any extra_configs = 20;
 }
+
+// Description of audio data to be recognized.
+message RecognitionMetadata {
+
+  // Enumerates the types of capture settings describing an audio file.
+  enum MicrophoneDistance {
+    // Audio type is not known.
+    MICROPHONE_DISTANCE_UNSPECIFIED = 0;
+
+    // The audio was captured from a closely placed microphone. Eg. phone,
+    // dictaphone, or handheld microphone. Generally if there speaker is within
+    // 1 meter of the microphone.
+    NEARFIELD = 100;
+
+    // The speaker if within 3 meters of the microphone.
+    MIDFIELD = 300;
+
+    // The speaker is more than 3 meters away from the microphone.
+    FARFIELD = 500;
+  }
+
+  // The audio type that most closely describes the audio being recognized.
+  MicrophoneDistance microphone_distance = 4;
+
+  // The name of device used to make the recording.
+  string recording_device_name = 7;
+}
+
 
 // Provides "hints" to the speech recognizer to favor specific words and phrases
 // in the results.
