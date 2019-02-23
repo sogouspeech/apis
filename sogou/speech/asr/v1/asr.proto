@@ -153,6 +153,8 @@ message RecognitionConfig {
     ENCODING_UNSPECIFIED = 0;
 
     // Uncompressed 16-bit signed little-endian samples (Linear PCM).
+    // `sample_rate_hertz` must be 16000.
+    // (when language-code = zh-cmn-Hans-CN and model = phonecall, it must be 8000)
     LINEAR16 = 1;
 
     // [`FLAC`](https://xiph.org/flac/documentation.html) (Free Lossless Audio
@@ -161,7 +163,14 @@ message RecognitionConfig {
     // requires only about half the bandwidth of `LINEAR16`. `FLAC` stream
     // encoding only supports 16-bit samples, however, not all fields in
     // `STREAMINFO` are supported.
+    // `sample_rate_hertz` must be 16000.
+    // (when language-code = zh-cmn-Hans-CN and model = phonecall, it must be 8000)
     FLAC = 2;
+
+    // Opus encoded audio frames in Ogg container
+    // ([OggOpus](https://wiki.xiph.org/OggOpus)).
+    // `sample_rate_hertz` must be one of 8000, 12000, 16000, 24000, or 48000.
+    OGG_OPUS = 6;
 
     // Sogou specific speex format 16-bit samples 1 channel
     SOGOU_SPEEX = 100;
@@ -171,7 +180,8 @@ message RecognitionConfig {
   AudioEncoding encoding = 1;
 
   // *Required* Sample rate in Hertz of the audio data sent in all
-  // `RecognitionAudio` messages. Valid values are only: 8000(model = phonecall), 16000.
+  // `RecognitionAudio` messages.
+  // In most cases, it should be specified as 16000.
   int32 sample_rate_hertz = 2;
 
   // *Required* The language code of the supplied audio.
