@@ -63,7 +63,7 @@ message VoiceConfig {
 
   // *Required*. The language code of the voice.
   // Example: "zh-cmn-Hans-CN".
-  // See [Language Support](https://docs.speech.sogou.com/docs/tts/resources/languages) for a list of the currently supported language codes.
+  // See [Language Support](https://zhiyin.sogou.com/doc/?url=/docs/content/tts/concepts/languages/) for a list of the currently supported language codes.
   string language_code = 1;
 
 
@@ -121,7 +121,6 @@ message AudioConfig {
 message SynthesizeResponse {
   // The audio data bytes encoded as specified in the request, including the
   // header (For LINEAR16 audio, we include the WAV header). Note: as
-  // with all bytes fields, protobuffers use a pure binary representation,
-  // whereas JSON representations use base64.
+  // with all bytes fields, protobuffers use a pure binary representation.
   bytes audio_content = 2;
 }
