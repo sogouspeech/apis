@@ -7,7 +7,7 @@ Sogou Speech APIs and help you to utilize them more efficiently. You can also
 use these definitions with open source tools to generate client
 libraries, documentation, and other artifacts.
 
-For more details on Sogou Speech APIs and developer tools, see the [SogouZhiYinDocs](https://docs.zhiyin.sogou.com) site.
+For more details on Sogou Speech APIs and developer tools, see the [Sogou Speech Documentation](https://zhiyin.sogou.com/docs/) site.
 
 ## Overview
 
@@ -32,7 +32,7 @@ a high-performance binary RPC protocol over HTTP/2. It offers many
 useful features, including request/response multiplex and full-duplex
 streaming.
 
-3.  [Sogou Speech SDKs](https://zhiyin.sogou.com/download/):
+3.  [Sogou Speech SDKs](https://zhiyin.sogou.com):
 You can use these sdks to access Sogou Speech APIs. They are based
 on gRPC for better performance and provide idiomatic client surface for
 better developer experience.
