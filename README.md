@@ -1,38 +1,38 @@
-# Sogou Speech APIs
+# Sogou AI Platform APIs
 
 This repository contains the original interface definitions of public
-Sogou Speech APIs that support both REST and gRPC protocols. Reading the
+Sogou AI Platform APIs that support both REST and gRPC protocols. Reading the
 original interface definitions can provide a better understanding of
-Sogou Speech APIs and help you to utilize them more efficiently. You can also
+Sogou AI Platform APIs and help you to utilize them more efficiently. You can also
 use these definitions with open source tools to generate client
 libraries, documentation, and other artifacts.
 
-For more details on Sogou Speech APIs and developer tools, see the [Sogou Speech Documentation](https://zhiyin.sogou.com/docs/) site.
+For more details on Sogou Speech APIs and developer tools, see the [Sogou AI Documentation](https://ai.sogou.com/docs/) site.
 
 ## Overview
 
-Sogou Speech APIs are typically deployed as API services that are hosted
+Sogou AI Platform APIs are typically deployed as API services that are hosted
 under different DNS names. One API service may implement multiple APIs
 and multiple versions of the same API.
 
-Sogou Speech APIs use [Protocol Buffers](https://github.com/google/protobuf)
+Sogou AI Platform APIs use [Protocol Buffers](https://github.com/google/protobuf)
 version 3 (proto3) as their Interface Definition Language (IDL) to
 define the API interface and the structure of the payload messages. The
 same interface definition is used for both REST and RPC versions of the
 API, which can be accessed over different wire protocols.
 
-There are several ways of accessing Sogou Speech APIs:
+There are several ways of accessing Sogou AI Platform APIs:
 
-1.  JSON over HTTP: You can access all Sogou Speech APIs directly using JSON
+1.  JSON over HTTP: You can access all Sogou AI Platform APIs directly using JSON
 over HTTP.
 
-2.  Protocol Buffers over gRPC: You can access Sogou Speech APIs published
+2.  Protocol Buffers over gRPC: You can access Sogou AI Platform APIs published
 in this repository through [GRPC](https://github.com/grpc), which is
 a high-performance binary RPC protocol over HTTP/2. It offers many
 useful features, including request/response multiplex and full-duplex
 streaming.
 
-3.  [Sogou Speech SDKs](https://zhiyin.sogou.com):
+3.  [Sogou AI Platform SDKs](https://ai.sogou.com):
 You can use these sdks to access Sogou Speech APIs. They are based
 on gRPC for better performance and provide idiomatic client surface for
 better developer experience.
@@ -40,7 +40,7 @@ better developer experience.
 ## Discussions
 
 This repo contains copies of Sogou Speech API definitions and related files.  For
-discussions or to raise issues, please visit our [official site](https://zhiyin.sogou.com/),
+discussions or to raise issues, please visit our [official site](https://ai.sogou.com/),
 see the contact us section or follow our wechat public account.
 
 ## Repository Structure
