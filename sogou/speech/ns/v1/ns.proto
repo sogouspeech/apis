@@ -17,6 +17,7 @@ syntax = "proto3";
 package sogou.speech.ns.v1;
 
 import "google/rpc/status.proto";
+import "google/protobuf/timestamp.proto";
 
 option cc_enable_arenas = true;
 option csharp_namespace = "Sogou.Speech.NS.V1";
@@ -55,6 +56,14 @@ message StreamingSuppressRequest {
         // `audio_content` data.
         bytes audio_content = 2;
     }
+
+    // *Optional* The sequence number of the request
+    // It must be specified through all streaming requests including the config request
+    // incremented by one each time, ** STARTING FROM 0 **
+    uint64 request_sequence = 3;
+
+    // *Optional* The timestamp when the request will be sending
+    google.protobuf.Timestamp request_time = 4;
 }
 
 // Provides information to the suppressor that specifies how to process the
@@ -65,6 +74,10 @@ message StreamingSuppressionConfig {
     // process the request.
     SuppressionConfig config = 1;
 
+    // *Optional* If non-zero value specified, the audio_content of each
+    // `StreamingSuppressionResult` in `StreamingSuppressResponse` will guaranteed to be
+    // the specified bytes, except the last one.
+    int32 audio_content_bytes_of_each_response = 3;
 }
 
 
@@ -96,6 +109,10 @@ message SuppressionConfig {
     // best suited to your domain to get best results. If a model is not
     // explicitly specified, "default" model is used.
     string model = 3;
+
+    // *Optional* Obfuscated ID of request, to identify number of unique requests using the service.
+    string uid = 4;
+
 }
 
 // `StreamingSuppressResponse` is the only message returned to the client by
@@ -123,4 +140,12 @@ message StreamingSuppressionResult {
     // *Output-only* a portion of the audio that is currently being processed.
     // It will be the encoding specified by corresponding request config.
     bytes audio_content = 1;
+
+    // *Optional* The sequence number of the response
+    // It must be specified through all streaming results
+    // incremented by one each time, ** STARTING FROM 1 **
+    uint64 response_sequence = 3;
+
+    // *Optional* The timestamp when the response will be sending
+    google.protobuf.Timestamp response_time = 4;
 }
