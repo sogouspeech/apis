@@ -1,0 +1,89 @@
+// Copyright 2018 Sogou Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package sogou.speech.vctts.v1;
+
+option cc_enable_arenas = true;
+option csharp_namespace = "Sogou.Speech.VCTTS.V1";
+option go_package = "golang.speech.sogou.com/apis/vctts/v1;vctts";
+option java_multiple_files = true;
+option java_outer_classname = "VCTTSProto";
+option java_package = "com.sogou.speech.vctts.v1";
+option objc_class_prefix = "SPB";
+option php_namespace = "Sogou\\Speech\\VCTTS\\V1";
+option swift_prefix = "SPB";
+
+
+service vctts {
+
+    rpc StreamingSynthesis (stream StreamingSynthesisRequest) returns (stream StreamingSynthesisResponse);
+
+}
+
+message StreamingSynthesisRequest {
+    //MUST send streaming config first.
+    oneof streaming_request {
+
+        StreamingSynthesisConfig streaming_config = 1;
+
+        bytes audio = 2;
+    }
+}
+
+message StreamingSynthesisConfig {
+
+    enum AudioEncoding {
+        ENCODING_UNSPECIFIED = 0;
+        LINEAR16 = 1;
+        MP3 = 2;
+        SOGOU_SPEEX = 3;
+    }
+
+    // specify request audio encoding, valid options: linear16 sogou_speex
+    AudioEncoding request_encoding = 1;
+
+    // specify return audio encoding, valid options: linear16 mp3
+    AudioEncoding response_encoding = 2;
+
+    // see[language-codes](https://blog.speech.sh/language-code/)
+    // for example, zh-cmn-Hans-CN
+    string language_code = 3;
+
+    // 0 ~ 1
+    float volume = 4;
+
+    // 0 ~ 1
+    float pitch = 5;
+
+    // the speaker name
+    string speaker = 6;
+
+    // session id
+    string id = 7;
+
+    // model [default|lowlatency]
+    string model = 8;
+}
+
+message StreamingSynthesisResponse {
+
+    oneof streaming_response {
+        //audio response
+        bytes audio = 1;
+        //transcript
+        string transcript = 2;
+    }
+}
